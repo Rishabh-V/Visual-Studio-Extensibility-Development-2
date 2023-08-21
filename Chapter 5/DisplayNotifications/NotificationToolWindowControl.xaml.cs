@@ -35,14 +35,14 @@ namespace DisplayNotifications
 
             // StatusBar
             
-            NotificationToolWindowCommand.DteInstance.StatusBar.Text = "This is a demo of notification in statusbar";
-            NotificationToolWindowCommand.VsStatusbar.SetText("This is a demo of notification in statusbar - II");
+            NotificationToolWindowCommand.DteInstance.StatusBar.Text = "This is a demo of notification in statusbar.";
+            NotificationToolWindowCommand.VsStatusbar.SetText("This is a demo of notification in statusbar.");
 
             // Toast
-            ToastNotificationHelper.ShowToastNotification("", "This is a sample of toast notification.");
+            ToastNotificationHelper.ShowToastNotification("Toast", "This is a sample of toast notification.");
 
             // DialogBox
-            MessageBox.Show("This is the demo of message in dialog box");
+            System.Windows.MessageBox.Show("This is the demo of message in dialog box", "Visual Studio Dialog", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

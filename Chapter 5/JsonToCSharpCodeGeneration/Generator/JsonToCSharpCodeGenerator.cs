@@ -54,6 +54,7 @@ namespace JsonToCSharpCodeGeneration
             // Show in error list
             GeneratorErrorCallback(false, 1, $"An exception occurred while generating code {ex}.", 1, 1);
             ErrorList.ForceShowErrors();
+            ErrorList.BringToFront();
         }
     }
 }
