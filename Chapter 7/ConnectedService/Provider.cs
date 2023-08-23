@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.ConnectedServices;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace ConnectedService
 {
@@ -22,6 +23,7 @@ namespace ConnectedService
             Name = Constants.Name;
             Description = Constants.Description;
             Id = Constants.ProviderId;
+            Icon = new BitmapImage() { UriSource = new Uri("ConnectedServices.png", UriKind.Relative) };
             Name = Constants.Name;
             SupportsUpdate = true;
             Version = Assembly.GetExecutingAssembly().GetName().Version;
