@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="ConnectedService.3b8994c2-1e1b-4036-8b9b-c25cf7ad254a" Version="1.0" Language="en-US" Publisher="Rishabh Verma" />
+        <Identity Id="ConnectedService.3b8994c2-1e1b-4036-8b9b-c25cf7ad254a" Version="1.1" Language="en-US" Publisher="Rishabh Verma" />
         <DisplayName>ConnectedService</DisplayName>
-        <Description>Empty VSIX Project.</Description>
+        <Description xml:space="preserve">A demonstration extension for showing connected services. This extension generates the client code to fetch universities for a country.</Description>
+        <Icon>ConnectedServices.png</Icon>
+        <PreviewImage>ConnectedServices.png</PreviewImage>
+        <Tags>Connected Services, Client code generator</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
