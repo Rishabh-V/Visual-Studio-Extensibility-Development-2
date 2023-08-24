@@ -5,8 +5,6 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-// September 2023
-// This project is just for illustration purposes and is not complete
 
 using EnvDTE;
 using Microsoft.VisualStudio;
