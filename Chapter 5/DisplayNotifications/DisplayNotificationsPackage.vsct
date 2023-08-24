@@ -9,8 +9,8 @@
     <Buttons>
       <Button guid="guidDisplayNotificationsPackageCmdSet" id="NotificationToolWindowCommandId" priority="0x0100" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
-        <Icon guid="ImageCatalogGuid" id="NotificationAlert" />
-        <CommandFlag>IconIsMoniker</CommandFlag>
+        <!--<Icon guid="ImageCatalogGuid" id="NotificationAlert"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>-->
         <Strings>
           <ButtonText>Display Notifications</ButtonText>
         </Strings>
