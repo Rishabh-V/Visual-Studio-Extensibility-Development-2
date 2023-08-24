@@ -49,6 +49,7 @@
   <ItemGroup>
     <Content Include="AddSnippet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="async\async.snippet">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
