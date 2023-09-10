@@ -121,36 +121,32 @@ namespace ExternalSearch
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            var options = package.GetDialogPage(typeof(ExternalSearchOptionPage)) as ExternalSearchOptionPage; // Get the options
+            var options = package.GetDialogPage(typeof(ExternalSearchOptionPage)) as ExternalSearchOptionPage; // Get the options.
 
             if (!(DteInstance?.ActiveDocument?.Selection is TextSelection textSelection))
             {
-                DteInstance.StatusBar.Text = "The selection is null or empty.";
+                DteInstance.StatusBar.Text = "The selection is null or empty";
                 return;
             }
 
-            string textToBeSearched = textSelection.Text?.Trim();
-            if (!string.IsNullOrWhiteSpace(textToBeSearched))
+            var textToBeSearched = textSelection.Text.Trim();
+            if (string.IsNullOrWhiteSpace(textToBeSearched))
             {
-                var encodedText = HttpUtility.UrlEncode(textToBeSearched);
-                DteInstance.StatusBar.Text = $"Searching {textToBeSearched}"; // Option 1.
-                VsStatusBar.SetText($"Searching {textToBeSearched}"); // Option 2.
-                DteInstance.StatusBar.Progress(true, "Searching..", 50, 100);
-                OutputWindow.OutputStringThreadSafe($"Searching {textToBeSearched}");
-                ToastNotificationHelper.ShowToastNotification("Search", $"Searching {textToBeSearched}");
-                string url = string.Format(options.Url, encodedText);
-                if (options.UseVSBrowser)
-                {
-                    DteInstance.ItemOperations.Navigate(url, vsNavigateOptions.vsNavigateOptionsDefault);
-                }
-                else
-                {
-                    System.Diagnostics.Process.Start(url);
-                }
+                DteInstance.StatusBar.Text = "The selection is null or empty";
+                return;
+            }
+
+            var encodedText = HttpUtility.UrlEncode(textToBeSearched);
+            DteInstance.StatusBar.Text = $"Searching {textToBeSearched}";
+            OutputWindow.OutputStringThreadSafe($"Searching {textToBeSearched}");
+            var url = string.Format(options.Url, encodedText);
+            if (options.UseVSBrowser)
+            {
+                DteInstance.ItemOperations.Navigate(url, vsNavigateOptions.vsNavigateOptionsDefault);
             }
             else
             {
-                DteInstance.StatusBar.Text = "The selection is null or empty";
+                System.Diagnostics.Process.Start(url);
             }
         }
 

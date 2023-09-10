@@ -68,7 +68,7 @@ namespace PropertiesToolWindow
             {
                 DTE = dte,
                 Package = this,
-                TextBox = new System.Windows.Controls.TextBox() { Name = nameof(TextBox) }
+                TextBox = new TextBox() { Name = nameof(TextBox) }
             };
         }
 

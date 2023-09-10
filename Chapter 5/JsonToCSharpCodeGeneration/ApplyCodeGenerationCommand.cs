@@ -36,14 +36,14 @@ namespace JsonToCSharpCodeGeneration
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
         /// <param name="commandService">Command service to add command to, not null.</param>
-        private ApplyCodeGenerationCommand(AsyncPackage package, IMenuCommandService commandService)
+        private ApplyCodeGenerationCommand(AsyncPackage package, OleMenuCommandService commandService)
         {
             this.package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
             var menuCommandID = new CommandID(CommandSet, CommandId);
-            var menuItem = new MenuCommand(this.Execute, menuCommandID);
-            commandService.AddCommand(new OleMenuCommand(this.Execute, menuCommandID)
+            var menuItem = new MenuCommand(Execute, menuCommandID);
+            commandService.AddCommand(new OleMenuCommand(Execute, menuCommandID)
             { 
               Supported = false,            
             });
@@ -80,7 +80,7 @@ namespace JsonToCSharpCodeGeneration
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
             dte = (DTE2)await package.GetServiceAsync(typeof(DTE));
             Assumes.Present(dte);
-            IMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as IMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(OleMenuCommandService)) as OleMenuCommandService;
             Instance = new ApplyCodeGenerationCommand(package, commandService);
         }
 

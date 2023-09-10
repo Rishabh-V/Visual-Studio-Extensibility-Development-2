@@ -44,14 +44,11 @@ namespace JsonToCSharpCodeGeneration
         private void LogException(Exception ex)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            // Write in output window
+            // Write to output window.
             var outputWindowPane = GetService(typeof(SVsGeneralOutputWindowPane)) as IVsOutputWindowPane;
-            if (outputWindowPane != null)
-            {
-                outputWindowPane.OutputStringThreadSafe($"An exception occurred while generating code {ex}.");
-            }
+            outputWindowPane?.OutputStringThreadSafe($"An exception occurred while generating code {ex}.");
 
-            // Show in error list
+            // Show in error list.
             GeneratorErrorCallback(false, 1, $"An exception occurred while generating code {ex}.", 1, 1);
             ErrorList.ForceShowErrors();
             ErrorList.BringToFront();

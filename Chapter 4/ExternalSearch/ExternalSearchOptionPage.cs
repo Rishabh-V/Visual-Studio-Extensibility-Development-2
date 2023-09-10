@@ -15,7 +15,7 @@ namespace ExternalSearch
         {
             { SearchEngines.Google, DefaultUrl },
             { SearchEngines.Bing, "https://www.bing.com/search?q={0}" },
-            { SearchEngines.MSDN, "https://learn.microsoft.com/en-in/search/?terms={0}&category=All" },
+            { SearchEngines.MicrosoftLearn, "https://learn.microsoft.com/en-in/search/?terms={0}&category=All" },
             { SearchEngines.StackOverflow, "https://stackoverflow.com/search?q={0}" },
             { SearchEngines.GitHub, "https://github.com/search?q={0}" }
         };
@@ -51,7 +51,7 @@ namespace ExternalSearch
     {
         Google = 0,
         Bing,
-        MSDN,
+        MicrosoftLearn,
         StackOverflow,
         GitHub
     }

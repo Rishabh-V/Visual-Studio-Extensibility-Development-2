@@ -25,14 +25,14 @@ namespace JsonToCSharpCodeGeneration
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [Guid(JsonToCSharpCodeGenerationPackage.PackageGuidString)]
+    [Guid(PackageGuidString)]
     [ProvideCodeGenerator(typeof(JsonToCSharpCodeGenerator), JsonToCSharpCodeGenerator.Name, JsonToCSharpCodeGenerator.Description, true)]
-    [ProvideCodeGeneratorExtension(JsonToCSharpCodeGenerator.Name, JsonToCSharpCodeGenerationPackage.JsonExt)]
+    [ProvideCodeGeneratorExtension(JsonToCSharpCodeGenerator.Name, JsonExt)]
     [ProvideUIContextRule(PackageGuids.guidVisibilityContextString,
         name: "Context",
-        expression: JsonToCSharpCodeGenerationPackage.JsonExt,
-        termNames: new[] { JsonToCSharpCodeGenerationPackage.JsonExt },
-        termValues: new[] { "HierSingleSelectionName:." + JsonToCSharpCodeGenerationPackage.JsonExt + "$" })]
+        expression: JsonExt,
+        termNames: new[] { JsonExt },
+        termValues: new[] { "HierSingleSelectionName:." + JsonExt + "$" })]
     
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class JsonToCSharpCodeGenerationPackage : AsyncPackage
