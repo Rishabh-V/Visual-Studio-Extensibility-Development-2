@@ -32,8 +32,12 @@ namespace ConfigureAwaitAnalyzer.Test
 
     namespace ConsoleApplication1
     {
-        class {|#0:TypeName|}
-        {   
+        class Program
+        {
+            static async Task Main()
+            {
+               [|await Task.Delay(100);|]
+            }
         }
     }";
 
@@ -47,13 +51,16 @@ namespace ConfigureAwaitAnalyzer.Test
 
     namespace ConsoleApplication1
     {
-        class TYPENAME
-        {   
+        class Program
+        {
+            static async Task Main()
+            {
+                await Task.Delay(100).ConfigureAwait(false);
+            }
         }
     }";
-
-            var expected = VerifyCS.Diagnostic("ConfigureAwaitAnalyzer").WithLocation(0).WithArguments("TypeName");
-            await VerifyCS.VerifyCodeFixAsync(test, expected, fixtest);
+            await VerifyCS.VerifyAnalyzerAsync(test);
+            await VerifyCS.VerifyCodeFixAsync(test, fixtest);
         }
     }
 }

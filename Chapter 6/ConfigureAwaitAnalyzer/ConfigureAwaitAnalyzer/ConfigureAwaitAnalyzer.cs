@@ -19,7 +19,7 @@ namespace ConfigureAwaitAnalyzer
         private static readonly LocalizableString Description = new LocalizableResourceString(nameof(Resources.AnalyzerDescription), Resources.ResourceManager, typeof(Resources));
         private const string Category = "Reliability";
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, isEnabledByDefault: true, description: Description);
+        internal static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, isEnabledByDefault: true, description: Description);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
@@ -34,10 +34,12 @@ namespace ConfigureAwaitAnalyzer
 
         private void AnalyzeAwaitStatements(SyntaxNodeAnalysisContext context)
         {
-            if (!context.Node.DescendantNodes().OfType<IdentifierNameSyntax>().Any(j => j.Identifier.ValueText.Equals("ConfigureAwait")))
+            var containingMethod = context.Node.Ancestors().OfType<MethodDeclarationSyntax>().FirstOrDefault();
+            if (containingMethod != null && containingMethod.Modifiers.Any(SyntaxKind.AsyncKeyword))
             {
-                var containingMethod = context.Node.Ancestors().OfType<MethodDeclarationSyntax>().FirstOrDefault();
-                if (containingMethod != null)
+                var hasConfigureAwait = context.Node.DescendantNodes().OfType<IdentifierNameSyntax>().Any(j => j.Identifier.ValueText.Equals("ConfigureAwait"));
+
+                if (!hasConfigureAwait)
                 {
                     var diagnostic = Diagnostic.Create(Rule, context.Node.GetLocation(), containingMethod.Identifier.ValueText);
                     context.ReportDiagnostic(diagnostic);
